@@ -29,7 +29,7 @@ Actually they send a USB HID report to your Switch, just like a common USB Joyst
 ## How to send other keys?
 Just pressing the key "A" was not enough to control your game console and means nothing. But how to send other keys?
 
-### Report
+### What's the USB Report
 The command sent by your PC (to your board) is called report. Like:
 ```
 88  04 00 08 80  80 80 80 00
