@@ -77,14 +77,14 @@ typedef enum {
 uint16_t means the buttons use two bytes to be expressed.
 
 If you want to press multiple buttons "A" "B" "MINUS" "PLUS", you can send:
-First byte: 88 --> leading byte, fixed to 0x88 for Nintendo Switch due to the size of report is always 8.
-2nd, 3rd bytes: 06 03 --> SWITCH_A | SWITCH_B | SWITCH_MINUS | SWITCH_PLUS = 0x0306 with little endian --> 06 03
-4th byte: 08 --> hat on center (byte reserved)
-5th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
-6th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
-7th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
-8th byte: 80 --> right stick on center (Y axis, 0 to 255, 128 the center)
-9th byte: 00 --> None
+-   1st byte: 88 --> leading byte, fixed to 0x88 for Nintendo Switch due to the size of report is always 8.
+-   2nd, 3rd bytes: 06 03 --> SWITCH_A | SWITCH_B | SWITCH_MINUS | SWITCH_PLUS = 0x0306 with little endian --> 06 03
+-   4th byte: 08 --> hat on center (byte reserved)
+-   5th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
+-   6th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
+-   7th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
+-   8th byte: 80 --> right stick on center (Y axis, 0 to 255, 128 the center)
+-   9th byte: 00 --> ignore
 i.e.
 ```
 88  06 03 08 80  80 80 80 00
