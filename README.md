@@ -30,12 +30,16 @@ Actually they send a USB HID report to your Switch, just like a common USB Joyst
 Just pressing the key "A" was not enough to control your game console and means nothing. But how to send other keys?
 
 ### What's the USB Report
-The command sent by your PC (to your board) is called report. Like:
+The data sent by your board to Switch is called USB Report, e.g.
+```
+04 00 08 80  80 80 80 00
+```
+The only difference between USB report and the serial data is the leading byte 0x88.  For simplicity, we also called the data sent from your PC (to your board)  as report. Like:
 ```
 88  04 00 08 80  80 80 80 00
 ```
 
-The first byte 88 is the leading byte, of which bits is set as 10001000. The first bit tells the board this byte indicates the length of the HID report. Of this example, the length of report is 8.
+The first byte 88 is the leading byte, of which binary bits are set as 10001000. The first bit tells the board this byte indicates the length of the HID report but not the data. Of this example, the length of report is 8.
 
 In fact, all report sent to the switch is always 8 bytes. But for other game pad or other console, the lenth of report is not fixed. For example, if the leading byte is 0x89, the number of following bytes is 9 (binary 1001), and the board will send 9 bytes as a USB report. If the leading byte is 0xFF, the number of following bytes is 127 (binary 111 1111). For Nintendo Switch, you can just send 0x88 as the leading byte.
 
