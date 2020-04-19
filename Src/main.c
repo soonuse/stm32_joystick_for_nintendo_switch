@@ -36,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define RX_LEADING    (0x80 | sizeof(USB_JoystickReport_Input))
+#define RX_LEADING    (0xFF)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
