@@ -36,7 +36,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define RX_LEADING    (0xFF)
+#define COMMAND_SYNC_START          (0xFF)
+#define RESP_SYNC_START             (0xFF)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -50,7 +51,9 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 extern USB_JoystickReport_Input joystick_input;
 uint8_t rx_buf = 0x00;
+uint8_t report_buf[8];
 uint8_t input_idx = 0;
+uint8_t crc8_ccitt = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -225,27 +228,67 @@ PUTCHAR_PROTOTYPE
   
   return ch;
 }
+
+uint8_t _crc8_ccitt_update(uint8_t inCrc, uint8_t inData)
+{
+    uint8_t   data;
+    data = inCrc ^ inData;
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        if ((data & 0x80) != 0 )
+        {
+            data <<= 1;
+            data ^= 0x07;
+        }
+        else
+        {
+            data <<= 1;
+        }
+    }
+    return data;
+}
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART1)
   {
-    if (rx_buf == RX_LEADING)
+    if (rx_buf == COMMAND_SYNC_START)
     {
+      uint8_t resp[1] = {RESP_SYNC_START};
+      HAL_UART_Transmit(huart, resp, 1, 0xFFFF);
+      crc8_ccitt = 0;
       input_idx = 0;
     }
-    else if (input_idx < sizeof(USB_JoystickReport_Input))
+    else if (input_idx < sizeof(USB_JoystickReport_Input) - 1)
     {
-      ((uint8_t*)&joystick_input)[input_idx] = rx_buf;
+      report_buf[input_idx] = rx_buf;
       input_idx++;
+      crc8_ccitt = _crc8_ccitt_update(crc8_ccitt, rx_buf);
+    }
+    else if (input_idx == sizeof(USB_JoystickReport_Input) - 1)
+    {
+      // last byte of report
+      report_buf[input_idx] = 0x00;
+      input_idx = 0;
+      if (rx_buf != crc8_ccitt)
+      {
+        // users are lazy to calculate the CRC 8.
+        // for compatible reasons, ignore the CRC 8 check.
+      }
+      for (uint8_t i = 0; i < sizeof(report_buf); i++)
+      {
+        ((uint8_t*)&joystick_input)[i] = report_buf[i];
+      }
     }
     else
     {
-      ((uint8_t*)&joystick_input)[0] = rx_buf;
       input_idx = 0;
+      crc8_ccitt = 0;
     }
     HAL_UART_Receive_IT(&huart1, &rx_buf, 1);
   }
 }
+
 /* USER CODE END 4 */
 
 /**
