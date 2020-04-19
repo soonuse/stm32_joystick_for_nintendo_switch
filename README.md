@@ -1,9 +1,9 @@
 # stm32_joystick_for_nintendo_switch
 STM32 Joystick for Nintendo Switch
 
-I am also a Nintendo big fan outside of working hours. I tried to play switch games by my PC. There are many ways to do such things.  Using Arduino/Teensy is a good choice. But for me, porting the joystick USB driver to a STM32 development board is also a nice game, faster and more stable. With serial (UART) control function I can play my Switch using the PC.
+I am also a Nintendo big fan outside of working hours. I tried to play switch games by my PC and there are many ways to do such things.  Using Arduino/Teensy is a good choice, but for me porting the joystick USB driver to a STM32 development board is also a nice game, faster and more stable. With serial (UART) control function I can play my Switch using the PC.
 
-This program allows you to control your Nintendo switch through the serial port using an STM32 development board, which means that you can control your switch just like using your PC.
+This program allows you to control your Nintendo switch through the serial port using an STM32 development board, which means that you can control your switch using PC. And some python scripts are perfect choice for TAS.
 
 This code was tested on Waveshare STM32F103C development board. Settings can be found in the STM32CubeMx project (.ioc file), this may help you to port them to another STM32 board with different chip.
 
