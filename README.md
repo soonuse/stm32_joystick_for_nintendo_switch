@@ -105,3 +105,13 @@ See it in hex:
 ```
 82 00 01 08 04 02 01 00
 ```
+## Control with Python scripts
+For ease of use, you can write Python Scripts for serial (UART) control.
+```
+pip3 install pyserial
+```
+For Example, run the script:
+```
+python3 Example/spin.py
+```
+This script rock the left stick forever. In games, your hero will rotate its body.
