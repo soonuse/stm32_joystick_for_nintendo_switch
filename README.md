@@ -15,7 +15,7 @@ This code was tested on Waveshare STM32F103C development board. Settings can be 
 3.  requires a USB port on the board.
 
 ## Getting Started
-1.  A .hex file is compiled and released for STM32F103C. You can download it to your STM32F103C board directly for most cases. [STM32CubeProg](https://www.st.com/en/development-tools/stm32cubeprog.html) is a good choice for downloading the .hex to the chip (if you are using UART to download it, remember seting the boot0 jumper to HIGH to enable ISP mode). Or you can go with Keil V5 and ST-Link to flash the program (there is no need to set the boot0 to HIGH by this way).
+1.  Download the firmware to your board. A .hex file is compiled and released for STM32F103C. You can download it to your STM32F103C board directly for most cases. [STM32CubeProg](https://www.st.com/en/development-tools/stm32cubeprog.html) is a good choice for downloading the .hex to the chip (if you are using UART to download it, remember seting the boot0 jumper to HIGH to enable ISP mode). Or you can go with Keil V5 and ST-Link to flash the program (there is no need to set the boot0 to HIGH by this way).
 2.  Connect a USB UART serial module between your PC and the PA9 / PA10 pins of your board. The Tx pin of the UART board should be connected to the PA10 (Rx pin of the STM32 chip) and UART's Rx pin to the board's Tx pin. There are many choices of UART module, FT232 / PL2303 / CP2102 and so on...
 3.  UART settings: 115200 bauds / 1 stop bit / no parity / no flow control
 4.  Just try it by sending serial command:
