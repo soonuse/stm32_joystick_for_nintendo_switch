@@ -50,7 +50,6 @@ class UsbJoystickReport:
         ly=Stick.CENTER,
         rx=Stick.CENTER,
         ry=Stick.CENTER,
-        vendor=0x00
     ):
         self.buttons = buttons
         self.hat = hat
@@ -58,7 +57,6 @@ class UsbJoystickReport:
         self.ly = ly
         self.rx = rx
         self.ry = ry
-        self.vendor = vendor
         assert Stick.MIN <= lx <= Stick.MAX
         assert Stick.MIN <= ly <= Stick.MAX
         assert Stick.MIN <= rx <= Stick.MAX
@@ -72,7 +70,6 @@ class UsbJoystickReport:
         ly=Stick.CENTER,
         rx=Stick.CENTER,
         ry=Stick.CENTER,
-        vendor=0x00
     ):
         self.buttons = buttons
         self.hat = hat
@@ -80,23 +77,35 @@ class UsbJoystickReport:
         self.ly = ly
         self.rx = rx
         self.ry = ry
-        self.vendor = vendor
         assert 0 <= lx <= 255, f'{lx}'
         assert 0 <= ly <= 255, f'{ly}'
         assert 0 <= rx <= 255, f'{rx}'
         assert 0 <= ry <= 255, f'{ry}'
 
     def get_bytes(self):
-        leading = b'\x88'
         buttons = self.buttons.to_bytes(length=2, byteorder='little', signed=False)
         hat = self.hat.to_bytes(length=1, byteorder='little', signed=False)
         lx = self.lx.to_bytes(length=1, byteorder='little', signed=False)
         ly = self.ly.to_bytes(length=1, byteorder='little', signed=False)
         rx = self.rx.to_bytes(length=1, byteorder='little', signed=False)
         ry = self.ry.to_bytes(length=1, byteorder='little', signed=False)
-        vendor = self.vendor.to_bytes(length=1, byteorder='little', signed=False)
-        b_arr = bytearray(leading + buttons + hat + lx + ly + rx + ry + vendor)
+        b_arr = bytearray(buttons + hat + lx + ly + rx + ry)
         return b_arr
+
+    def get_serial_bytes(self):
+        """
+        Expends the bytes of report. len(ret_arr) = len(b_arr) / 7 * 8
+        The first bit indicates the beginning of sync.
+        The first bits of the following bytes are fixed to 0.
+        """
+        b_arr = self.get_bytes()
+        ret_arr = bytearray(8)
+        ret_arr[0] = 0x80 | (b_arr[0] >> 1)
+        for i in range(1, 7):
+            temp = (b_arr[i - 1] << (7 - i)) & 0xFF
+            ret_arr[i] = (temp | (b_arr[i] >> (i + 1))) & 0x7F
+        ret_arr[-1] = b_arr[-1] & 0x7F
+        return ret_arr
 
     def reset(self):
         self.buttons = 0x0000
@@ -105,4 +114,3 @@ class UsbJoystickReport:
         self.ly = Stick.CENTER
         self.rx = Stick.CENTER
         self.ry = Stick.CENTER
-        self.vendor = 0x00

@@ -17,7 +17,7 @@ if __name__ == '__main__':
             lx=int(127 + r * cos(phi)),
             ly=int(127 + r * sin(phi))
         )
-        ser.write(report.get_bytes())
+        ser.write(report.get_serial_bytes())
         sleep(0.02)
         if phi > 2 * pi:
             phi = 0

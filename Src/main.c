@@ -246,7 +246,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       serial_buf[serial_idx] = rx_buf;
       serial_idx++;
     }
-    if (serial_idx == sizeof(serial_buf))
+    if (serial_idx >= sizeof(serial_buf))
     {
       serial_idx = 0;
       uint8_t* ptr = (uint8_t*)&joystick_input;
