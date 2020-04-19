@@ -115,3 +115,5 @@ For Example, run the script:
 python3 Example/spin.py
 ```
 This script rock the left stick forever. In games, your hero will rotate its body.
+
+If your serial module is not '/dev/ttyUSB0', you should edit the script according to your serial device name. For Windows user, it seems like COM1 / COM2 / COM3 ... and for Linux, you can find them by `ls -l /dev | grep ttyUSB`
