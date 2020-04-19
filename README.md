@@ -48,7 +48,7 @@ typedef struct USB_JoystickReport_Input_t {
   uint8_t  VendorSpec;
 } USB_JoystickReport_Input;
 ```
-Mean while the buttons:
+Meanwhile the buttons:
 ```
 typedef enum {
     SWITCH_Y       = 0x01,
