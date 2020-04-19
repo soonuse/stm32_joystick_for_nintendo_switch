@@ -2,3 +2,4 @@
 *.swp
 .mxproject
 /MDK-ARM/
+/__pycache__/
