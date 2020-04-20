@@ -7,8 +7,6 @@ This program allows you to control your Nintendo switch through the serial port 
 
 This code was tested on Waveshare STM32F103C development board. Settings can be found in the STM32CubeMx project (.ioc file), this may help you to port them to another STM32 board with different chip.
 
-![image](https://github.com/soonuse/stm32_joystick_for_nintendo_switch/blob/master/Examples/example_spin.gif)
-
 ## Main points of the code
 1.  requires your board go with 8M oscillator (PD0 / PD1).
 2.  PA9 / PA10 for TX / RX of UART.
@@ -70,19 +68,20 @@ typedef enum {
 ```
 uint16_t means the buttons are expressed using two bytes.
 
-If you want to press multiple buttons "A", the coresponding USB report is:
+The coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
 -   3th byte: 08 --> hat on center (byte reserved)
 -   4th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
 -   5th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
 -   6th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
 -   7th byte: 80 --> right stick on center (Y axis, 0 to 255, 128 the center)
--   8th byte: 00 --> the vendor, ignore
+-   8th byte: 00 --> specified by the vendor, ignore
+
 i.e.
 ```
 04 00 08 80  80 80 80 00
 ```
-
+-   To press multiple buttons, you can use the operator "|" to put them together, e.g (Button.A | Button.B)
 ### How to convert USB report to the serial data
 Then we should convert the USB report to the serial data to input.
 It's not the same as the serial data but what's the relation ship of them?
