@@ -254,7 +254,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       {
         *(ptr + i) = (serial_buf[i] << (i + 1)) | (serial_buf[i + 1] >> (6 - i));
       }
-      // ignore the vendor for the report
+      // ignore the vendor specific info
       // *(ptr + 7) = 0x00;
     }
     HAL_UART_Receive_IT(&huart1, &rx_buf, 1);
