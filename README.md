@@ -66,7 +66,7 @@ typedef enum {
     SWITCH_CAPTURE = 0x2000,
 } JoystickButtons;
 ```
-uint16_t means the buttons are expressed using two bytes.
+uint16_t means the buttons are expressed using two bytes. To press multiple buttons, you can use the operator "|" to put them together, e.g (Button.A | Button.B)
 
 If you want to press multiple buttons "A", the coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
