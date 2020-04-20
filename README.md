@@ -7,8 +7,6 @@ This program allows you to control your Nintendo switch through the serial port 
 
 This code was tested on Waveshare STM32F103C development board. Settings can be found in the STM32CubeMx project (.ioc file), this may help you to port them to another STM32 board with different chip.
 
-![image](https://github.com/soonuse/stm32_joystick_for_nintendo_switch/blob/master/Examples/example_spin.gif)
-
 ## Main points of the code
 1.  requires your board go with 8M oscillator (PD0 / PD1).
 2.  PA9 / PA10 for TX / RX of UART.
