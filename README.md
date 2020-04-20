@@ -66,9 +66,9 @@ typedef enum {
     SWITCH_CAPTURE = 0x2000,
 } JoystickButtons;
 ```
-uint16_t means the buttons are expressed using two bytes. To press multiple buttons, you can use the operator "|" to put them together, e.g (Button.A | Button.B)
+uint16_t means the buttons are expressed using two bytes.
 
-If you want to press multiple buttons "A", the coresponding USB report is:
+Here we press the button "A" and the coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
 -   3th byte: 08 --> hat on center (byte reserved)
 -   4th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
@@ -80,7 +80,7 @@ i.e.
 ```
 04 00 08 80  80 80 80 00
 ```
-
+-   To press multiple buttons, you can use the operator "|" to put them together, e.g (Button.A | Button.B)
 ### How to convert USB report to the serial data
 Then we should convert the USB report to the serial data to input.
 It's not the same as the serial data but what's the relation ship of them?
