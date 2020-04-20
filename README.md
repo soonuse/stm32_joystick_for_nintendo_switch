@@ -68,7 +68,7 @@ typedef enum {
 ```
 uint16_t means the buttons are expressed using two bytes.
 
-Here we press the button "A" and the coresponding USB report is:
+The coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
 -   3th byte: 08 --> hat on center (byte reserved)
 -   4th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
