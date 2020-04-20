@@ -75,7 +75,7 @@ If you want to press multiple buttons "A", the coresponding USB report is:
 -   5th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
 -   6th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
 -   7th byte: 80 --> right stick on center (Y axis, 0 to 255, 128 the center)
--   8th byte: 00 --> the vendor, ignore
+-   8th byte: 00 --> specified by the vendor, ignore
 i.e.
 ```
 04 00 08 80  80 80 80 00
