@@ -11,7 +11,7 @@ This code was tested on Waveshare STM32F103C development board. Settings can be 
 1.  requires your board go with 8M oscillator (PD0 / PD1).
 2.  PA9 / PA10 for TX / RX of UART.
 3.  requires a USB port on the board.
--   Almost all of the STM32F103C development board satisfy the condition.
+-   Almost all of the STM32F103C development boards satisfy the condition.
 
 ## Getting Started
 1.  Download the firmware to your board. A .hex file was compiled and released for STM32F103C, see the /Release/ direcotry. You can download it to your STM32F103C board directly for most cases. [STM32CubeProg](https://www.st.com/en/development-tools/stm32cubeprog.html) is used for downloading the .hex to the chip. STM32CubeProg supports multiple OS (Windows, Linux, Mac...). If you are using UART to download it, remember seting the boot0 jumper to HIGH to enable ISP mode. Or you can go with Keil V5 and ST-Link to flash the program. There is no need to set the boot0 to HIGH in this method.
@@ -70,7 +70,7 @@ uint16_t means the buttons are expressed using two bytes.
 
 The coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
--   3th byte: 08 --> hat on center (byte reserved)
+-   3rd byte: 08 --> hat on center (byte reserved)
 -   4th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
 -   5th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
 -   6th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
