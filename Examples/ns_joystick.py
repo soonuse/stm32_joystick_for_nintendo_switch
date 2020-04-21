@@ -44,12 +44,9 @@ class UsbJoystickReport:
 
     def __init__(
         self,
-        buttons=0x0000,
-        hat=Hat.CENTER,
-        lx=Stick.CENTER,
-        ly=Stick.CENTER,
-        rx=Stick.CENTER,
-        ry=Stick.CENTER,
+        buttons=0x0000, hat=Hat.CENTER,
+        lx=Stick.CENTER, ly=Stick.CENTER,
+        rx=Stick.CENTER, ry=Stick.CENTER,
     ):
         self.buttons = buttons
         self.hat = hat
@@ -64,12 +61,9 @@ class UsbJoystickReport:
 
     def set_report(
         self,
-        buttons=0x0000,
-        hat=Hat.CENTER,
-        lx=Stick.CENTER,
-        ly=Stick.CENTER,
-        rx=Stick.CENTER,
-        ry=Stick.CENTER,
+        buttons=0x0000, hat=Hat.CENTER,
+        lx=Stick.CENTER, ly=Stick.CENTER,
+        rx=Stick.CENTER, ry=Stick.CENTER,
     ):
         self.buttons = buttons
         self.hat = hat
@@ -114,3 +108,12 @@ class UsbJoystickReport:
         self.ly = Stick.CENTER
         self.rx = Stick.CENTER
         self.ry = Stick.CENTER
+        
+def send_report(
+    ser,
+    buttons=0x0000, hat=Hat.CENTER,
+    lx=Stick.CENTER, ly=Stick.CENTER,
+    rx=Stick.CENTER, ry=Stick.CENTER,
+):
+    report = UsbJoystickReport(buttons=buttons, hat=hat, lx=lx, ly=ly, rx=rx, ry=ry)
+    ser.write(report.get_serial_bytes())
