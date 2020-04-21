@@ -116,6 +116,10 @@ def action(
     rx=Stick.CENTER, ry=Stick.CENTER,
     duration=None,
 ):
+    """
+    If the duration is None, the action loops forever
+    else the report will be reset after the duration.
+    """
     report = UsbJoystickReport(buttons=buttons, hat=hat, lx=lx, ly=ly, rx=rx, ry=ry)
     ser.write(report.get_serial_bytes())
     if duration is not None:
