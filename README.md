@@ -116,4 +116,4 @@ python3 Example/spin.py
 ```
 This script rock the left stick forever. In games, your hero will rotate its body.
 
-If your serial module is not 'COM7', you should edit the /Example/settings.py according to your serial device name, i.e. replace the port for the function `serial.Serial(port, baud)`. For Windows user, it seems like COM1, COM2, COM3 ... and for Linux, you can find them by `ls -l /dev | grep ttyUSB`
+The line of `port` for serial should be changed according to your serial device name. For Windows user, it seems like COM1, COM2, COM3 ... on Device Manager. For Linux, you can find them by `ls -l / dev | grep ttyUSB`
