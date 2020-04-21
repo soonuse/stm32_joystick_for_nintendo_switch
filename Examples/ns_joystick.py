@@ -3,7 +3,7 @@
         often used for serial control.
 @author: Yehui
 """
-
+import time
 
 class Hat:
     TOP = 0x00
@@ -109,11 +109,16 @@ class UsbJoystickReport:
         self.rx = Stick.CENTER
         self.ry = Stick.CENTER
         
-def send_report(
+def action(
     ser,
     buttons=0x0000, hat=Hat.CENTER,
     lx=Stick.CENTER, ly=Stick.CENTER,
     rx=Stick.CENTER, ry=Stick.CENTER,
+    duration=None,
 ):
     report = UsbJoystickReport(buttons=buttons, hat=hat, lx=lx, ly=ly, rx=rx, ry=ry)
     ser.write(report.get_serial_bytes())
+    if duration is not None:
+        time.sleep(duration)
+        report.reset()
+        ser.write(report.get_serial_bytes())
