@@ -89,7 +89,7 @@ It's not the same as the serial data but what's the relation ship of them?
 ```
 04 00 08 80  80 80 80
 ```
-2.  Read in binary:
+2.  in binary:
 ```
 00000100 00000000 00001000 10000000  10000000 10000000 10000000
 ```
@@ -101,7 +101,7 @@ Split them for each 7 bits, we get:
 ```
 10000010 00000000 00000001 00001000 00000100 00000010 00000001 00000000
 ```
-Read in hex:
+in hex:
 ```
 82 00 01 08 04 02 01 00
 ```
