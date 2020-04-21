@@ -70,7 +70,7 @@ uint16_t means the buttons are expressed using two bytes.
 
 The coresponding USB report is:
 -   1nd, 2nd bytes: 04 00 --> SWITCH_A as uint16_t = 0x0004 with little endian --> 04 00
--   3rd byte: 08 --> hat on center (byte reserved)
+-   3rd byte: 08 --> hat on center
 -   4th byte: 80 --> left stick on center (X axis, 0 to 255, 128 the center)
 -   5th byte: 80 --> left stick on center (Y axis, 0 to 255, 128 the center)
 -   6th byte: 80 --> right stick on center (X axis, 0 to 255, 128 the center)
