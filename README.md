@@ -81,7 +81,16 @@ i.e.
 ```
 04 00 08 80  80 80 80 00
 ```
--   To press multiple buttons, you can use the operator "|" to put them together, e.g (Button.A | Button.B)
+-   To press multiple buttons, you can use the operator "|" to put them together, e.g. for the python examples:
+```
+report = UsbJoystickReport(buttons=Button.A | Button.B)
+```
+and for the C/C++:
+```
+USB_JoystickReport_Input joystick_input;
+joystick_input.Button = SWITCH_A | SWITCH_B;
+```
+
 ### How to convert USB report to the serial data
 Then we should convert the USB report to the serial data to input.
 It's not the same as the serial data but what's the relation ship of them?
@@ -116,4 +125,4 @@ python3 Example/spin.py
 ```
 This script rock the left stick forever. In games, your hero will rotate its body.
 
-The line of `port` for serial should be changed according to your serial device name. For Windows user, it seems like COM1, COM2, COM3 ... on Device Manager. For Linux, you can find them by `ls -l / dev | grep ttyUSB`
+The line of `port` for serial should be changed according to your serial device name. For Windows user, it seems like COM1, COM2, COM3 ... on Device Manager. For Linux, you can find them by `ls -l /dev | grep ttyUSB`
