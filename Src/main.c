@@ -238,7 +238,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     {
       uint8_t resp = RESP_SYNC_START;
       HAL_UART_Transmit(huart, &resp, 1, 0xFFFF);
-      serial_buf[0] = rx_buf;
+      serial_idx = 0;
+      serial_buf[serial_idx] = rx_buf;
       serial_idx++;
     }
     else if (0 < serial_idx < sizeof(serial_buf))
