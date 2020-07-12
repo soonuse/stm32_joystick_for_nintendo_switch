@@ -114,6 +114,12 @@ in hex:
 ```
 82 00 01 08 04 02 01 00
 ```
+
+## Control with Serial Console
+You can go with the Serial Console following the guide on  https://github.com/soonuse/serial_console_for_switch.git
+
+![serial console](https://github.com/soonuse/serial_console_for_switch/blob/master/SerialConsole/Resources/demo.png)
+
 ## Control with Python scripts
 For ease of use, you can write Python Scripts for serial (UART) control.
 ```
