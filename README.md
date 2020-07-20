@@ -116,7 +116,7 @@ in hex:
 ```
 
 ## Control with Serial Console
-You can go with the Serial Console following the guide on  https://github.com/soonuse/serial_console_for_switch.git
+Use [SerialConsole](https://github.com/soonuse/serial_console_for_switch/releases) to control your Switch via serial port (UART). You can go with the Serial Console software following the guide on  https://github.com/soonuse/serial_console_for_switch.git
 
 ![serial console](https://github.com/soonuse/serial_console_for_switch/blob/master/SerialConsole/Resources/demo.png)
 
