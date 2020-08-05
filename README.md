@@ -129,6 +129,6 @@ For Example, run the script:
 ```
 python3 Example/spin.py
 ```
-This script rock the left stick forever. In games, your hero will rotate its body.
+This script rocks the left stick forever. In games, your hero will rotate its body.
 
 The line of `port` for serial should be changed according to your serial device name. For Windows user, it seems like COM1, COM2, COM3 ... on Device Manager. For Linux, you can find them by `ls -l /dev | grep ttyUSB`
